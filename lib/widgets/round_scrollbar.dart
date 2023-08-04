@@ -58,6 +58,7 @@ class RoundScrollbar extends StatefulWidget {
 class _RoundScrollbarState extends State<RoundScrollbar> {
   double? _index;
   double? _fractionOfThumb;
+  Timer? scrollbarHideTimer;
 
   bool _isScrollBarVisible = true;
 
@@ -79,12 +80,13 @@ class _RoundScrollbarState extends State<RoundScrollbar> {
 
     _currentHideUpdate++;
     final thisUpdate = _currentHideUpdate;
-    Future.delayed(
+
+    scrollbarHideTimer = Timer(
       widget.autoHideDuration,
       () {
         if (thisUpdate != _currentHideUpdate) return;
         setState(() => _isScrollBarVisible = false);
-      },
+      }
     );
   }
 
@@ -109,6 +111,9 @@ class _RoundScrollbarState extends State<RoundScrollbar> {
   @override
   void dispose() {
     widget.controller.removeListener(_onScrolled);
+    if(scrollbarHideTimer != null) {
+      scrollbarHideTimer!.cancel();
+    }
     super.dispose();
   }
 
