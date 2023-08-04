@@ -6,7 +6,7 @@ import 'dart:math' as math;
 // starts at the 2pm marker on an analog watch
 const _kProgressBarStartingPoint = math.pi * (-1 / 2 + 1 / 3);
 // finishes at the 4pm marker on an analog watch
-const _kProgressBarLength = math.pi / 3;
+const _kProgressBarLength = math.pi / 4;
 
 class RoundScrollbar extends StatefulWidget {
   /// ScrollController for the scrollbar.
